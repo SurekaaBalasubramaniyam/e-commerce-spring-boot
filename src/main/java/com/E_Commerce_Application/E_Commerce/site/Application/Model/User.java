@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -22,7 +24,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private ERole role;
 
+    @OneToMany(mappedBy = "user")
+    private List<Address> address;
 
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
+    private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    private List<Product> product;
 
     public User(){
 
