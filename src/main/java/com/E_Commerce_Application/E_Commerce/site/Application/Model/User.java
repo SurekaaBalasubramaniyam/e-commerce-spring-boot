@@ -33,6 +33,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Product> product;
 
+    @OneToMany(mappedBy = "user",cascade = { CascadeType.PERSIST, CascadeType.MERGE }, orphanRemoval = true)
+    private List<Order> order;
+
     public User(){
 
     }

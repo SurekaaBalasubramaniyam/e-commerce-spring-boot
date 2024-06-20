@@ -38,10 +38,15 @@ public class CartController {
         return cartService.updateCart(id, cartItem);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeItemFromCart(@PathVariable Long id) throws Exception {
-        cartService.removeItemFromCart(id);
-        return ResponseEntity.ok("delete success");
+    @DeleteMapping("/item/{cartItemId}")
+    public void deleteCartItem(@PathVariable Long cartItemId) throws Exception {
+        cartService.deleteCartItem(cartItemId);
+    }
+
+    @PostMapping("/checkout")
+    public String createOrder(@RequestParam Long userId, @RequestParam boolean payment) throws Exception {
+        cartService.createOrder(userId);
+        return "success";
     }
 
 }

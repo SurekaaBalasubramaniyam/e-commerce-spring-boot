@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,9 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
     private List<CartItem> cartItem = new ArrayList<>();
 
+    private Date createdDate;
     private Double totalPrice;
     private Double gstAmount;
     private Double totalAmountWithGST;
+
 }
